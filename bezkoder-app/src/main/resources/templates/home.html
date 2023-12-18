@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link th:href = "@{/css/top.css}" rel = "stylesheet" type="text/css">
+<title>TOP画面</title>
+</head>
+<body>
+	<section layout:fragment = "content">
+		<main>
+		<h1 class="primary">勤怠管理</h1>
+		<form th:action = "@{/work}" method = "post" class="form-group">
+			<span th:text = "${workMsg}" class="workMsg"></span><br>
+			<span th:text = "${workError}" class="errMsg"></span><br>
+			<input type="submit" value="出勤" class="top_btn">
+		</form>
+		<form th:action = "@{/shiftAdmin}" method="post" class="form-group">
+			<input type="submit" value="シフト管理" class="top_btn">
+		</form>
+		</main>
+	</section>
+</body>
+</html>

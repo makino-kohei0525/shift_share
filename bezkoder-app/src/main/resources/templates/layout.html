@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href = "@{/css/common.css}" rel = "stylesheet">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet"
+/>
+<title></title>
+</head>
+<body>
+	<header>
+		<span class="material-icons">account_circle</span>
+		<span class="name" th:text = "${name}"></span>
+	</header>
+	<div layout:fragment = "content"></div>
+</body>
+</html>

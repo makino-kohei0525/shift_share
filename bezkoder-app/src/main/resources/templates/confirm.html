@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link th:href = "@{/css/confirm.css}" rel = "stylesheet" type="text/css">
+<title>確認画面</title>
+</head>
+<body>
+	<section layout:fragment = "content">
+<!--		登録済みの来月シフト表示-->
+		<div th:if = "${resultList}">
+		<h1 class="secondary">来月のシフト</h1>
+		<table>
+			<tr>
+				<th class="date">日付</th>
+				<th class="time">時間</th>
+			</tr>
+			<tr  th:each = "result : ${resultList}" th:object = "${result}">
+				<td>[[*{date}]]
+					<span th:text ="${#temporals.dayOfWeekNameShort(date)}"></span>
+				</td>
+				<td th:text = "*{time}"></td>		
+			</tr>
+		</table>
+		</div>
+<!--		当月シフト表示-->
+		<div th:if = "${thisShift}">
+			<h1 class="secondary">今月のシフト</h1>
+			<table>
+				<tr>
+					<th class="date">日付</th>
+					<th class="date">時間</th>
+				</tr>
+				<tr th:each = "result : ${thisShift}" th:object = "${result}">
+					<td th:text = "*{date}"></td>
+					<td th:text = "*{time}"></td>
+				</tr>
+			</table>
+		</div>
+		<form th:action = "@{/admin}" method="post" class="form-group">
+			<input type="submit" value = "戻る" class="btn">
+		</form>
+	</section>
+</body>
+</html>

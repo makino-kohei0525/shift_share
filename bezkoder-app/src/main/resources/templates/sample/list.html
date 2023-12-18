@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>CommentApp</title>
+</head>
+<body>
+  <h3>出勤管理</h3>
+  <table>
+    <div th:each="comment : ${comments}" th:inline="text">
+      <tr>
+        <td><a th:href="@{/delete?(id=*{comment.id})}"><button>削除</button></a></td>
+        <td>&nbsp;[[${comment.content}]]</td>
+      </tr>
+    </div>
+  </table>
+  <hr>
+  <form th:action="@{/add}" th:object="${comment}" method="post">
+    <input type="text" th:field="*{content}">
+    <button>出勤</button><br><small style="color:red" th:errors="*{content}"></small>
+  </form>
+  <br>
+</body>
+</html>

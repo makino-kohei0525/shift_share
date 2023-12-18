@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>テスト</title>
+</head>
+<body>
+<tr th:each = "user : ${member}" th:object = "${user}">
+	<td th:text = "*{id}"></td>
+	<td th:text = "*{name}"></td>
+	<td th:text = "*{tantou}"></td>
+	<td th:text = "*{cliant}"></td>
+	<td th:text = "*{tenpo}"></td>
+	<td th:text = "*{carrier}"></td>
+</tr>
+</body>
+</html>
+
+<!--テーブル表示テスト用クラス-->

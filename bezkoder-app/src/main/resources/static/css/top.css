@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+main{
+	text-align: center;
+}
+
+.form-group{
+	margin: 15% auto;
+}
+
+.top_btn{
+	
+	margin-top: 10px;
+	border-radius : 5%;          
+	font-size     : 2.0rem ;     
+	text-align    : center;       
+	padding       : 10px 18px;   
+	background-color:  rgb(0 92 160);
+	color         : #ffffff;     
+	line-height   : 1em;         
+	border        : 1px solid  rgb(0 92 160); 
+}
+
+.errMsg{
+	color: darkred;
+	font-size: 1.2rem;
+}
+
+.workMsg{
+	color: rgb(0, 100, 50);
+	font-size: 1.2rem;
+}

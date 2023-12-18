@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
+    />
+    <link th:href="@{/css/employee.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>従業員、シフト情報</title>
+  </head>
+  <body>
+    <h1>情報表示画面</h1>
+    <div id="locatedpoint" class="changeWindow">
+      <form>
+        <input class="view" type="text" readonly="true" id="idInWin" />
+        <input class="view" type="text" readonly="true" id="dateInWin" />
+        <input class="radio" type="radio" name="color" value="yellow" /><label
+          class="yellow"
+          >●</label
+        >
+        <input class="radio" type="radio" name="color" value="red" /><label
+          class="red"
+          >●</label
+        >
+        <input class="radio" type="radio" name="color" value="blue" /><label
+          class="blue"
+          >●</label
+        >
+      </form>
+      <button class="close">×</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th th:each="item : ${label}" th:object="${item}">
+            <span th:text="${item}"></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          th:each="element : ${employee}"
+          th:object="${element}"
+          th:data-userid="*{id}"
+        >
+          <th:block th:each="item : ${element}">
+            <td
+              class="cell"
+              th:text="${item.value}"
+              th:data-date="${item.key}"
+            ></td>
+          </th:block>
+        </tr>
+      </tbody>
+    </table>
+
+    <form th:action="@{/admin}">
+      <input type="submit" value="戻る" />
+    </form>
+    <script>
+      $(".cell").on("click", function (el) {
+        var id = $(this).parent().data("userid");
+        var name = $(this).parent().children().eq(1).text();
+        var x = el.pageX;
+        var y = el.pageY;
+        $("#locatedpoint").css({ top: y, left: x, display: "block" });
+        $("#idInWin").val(name);
+        $("#dateInWin").val($(this).data("date"));
+      });
+      $(".close").on("click", function (el) {
+        $("#locatedpoint").css({ display: "none" });
+      });
+    </script>
+  </body>
+</html>

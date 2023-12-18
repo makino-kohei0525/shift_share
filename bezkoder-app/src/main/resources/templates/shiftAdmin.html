@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link th:href = "@{/css/shiftAdmin.css}" rel = "stylesheet" type="text/css">
+<title>シフト管理</title>
+</head>
+<body>
+	<section layout:fragment = "content">
+		<main>
+		<h1 class="primary">シフト管理</h1>
+		<form th:action = "@{/register}" method="post" class="form-group">
+			<input type="submit" value="来月のシフト登録" class="btn">
+		</form>
+		<form th:action = "@{/look}" method="post" class="form-group">
+			<input type="submit" value="今月のシフト確認" class="btn">
+		</form>
+		<form th:action = "@{/top}" class="form-group">
+			<input type="submit" value="TOPへ戻る" class="btn top">
+		</form>
+		</main>
+	</section>
+</body>
+</html>

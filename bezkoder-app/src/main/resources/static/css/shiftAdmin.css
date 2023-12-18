@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+
+header{
+	margin-bottom: 30%;
+}
+
+main{
+	text-align: center;
+}
+
+.form-group{
+	margin: 15% auto;
+}
+.btn{
+	
+	margin-top: 15px;
+	border-radius : 5%;          
+	font-size     : 1.6rem ;     
+	text-align    : center;       
+	padding       : 10px 18px;   
+	background    : rgb(0, 151, 75);     
+	color         : #ffffff;     
+	line-height   : 1em;         
+	border        : 1px solid rgb(0, 151, 75);    
+}
+
+.top{
+	background    :rgb(0 92 160);
+	border        : 1px solid rgb(0 92 160);     
+}

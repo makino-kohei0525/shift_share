@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css"/>
+<link th:href = "@{/css/admin.css}" rel = "stylesheet">
+<title>管理画面</title>
+</head>
+<body>
+	<h2>シフト表示</h2>
+	<form th:action="@{/select/month}" method="post">
+		<input type="month" name="month">
+		<input type="submit" value="表示">
+	</form>
+	
+	<h2>社員情報一覧</h2>
+	<form th:action="@{/list/employee}" method="post">
+		<input type="submit" value="一覧表示">
+	</form>
+	
+	<h2>社員登録</h2>
+	<form th:action = "@{/employee/input}" th:object = "${employeeForm}" method = "post">
+		<div>
+			<label>ID</label>
+			<input type="text" name = "id">
+		</div>
+		<div>
+			<label>名前</label>
+			<input type="text" name = "name">
+		</div>
+		<div>
+			<label>パスワード</label>
+			<input type="password" name = "password">
+		</div>
+		<input type="submit" value="登録">
+	</form>
+	
+	<h2>所属情報登録</h2>
+	<form th:action = "@{/employee/info}" th:object = "${infoForm}" method = "post">
+		<div>
+			<label>ID</label>
+			<input type="text" name = "id">
+		</div>
+		<div>
+			<label>地域</label>
+			<input type="text" name = "area">
+		</div>
+		<div>
+			<label>業種</label>
+			<input type="text" name = "type">
+		</div>
+		<div>
+			<label>クライアント</label>
+			<input type="text" name = "client">
+		</div>
+		<div>
+			<label>店舗</label>
+			<input type="text" name = "store">
+		</div>
+		<div>
+			<label>キャリア</label>
+			<input type="text" name = "career">
+		</div>
+		<div>
+			<label>担当</label>
+			<input type="text" name = "tantou">
+		</div>
+		<input type="submit" value="登録/更新">
+	</form>
+	
+</body>
+</html>

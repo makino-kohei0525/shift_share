@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+table{
+	margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    text-align: center;
+}
+
+td{
+	padding: 2px;
+}
+
+.btn{
+	margin: 10% auto;
+	border-radius : 5%;          
+	font-size     : 1.0rem ;      
+	padding       : 10px 18px;   
+	background    : rgb(185, 0, 0);     
+	color         : #ffffff;     
+	line-height   : 1em;         
+	border        : 1px solid rgb(185, 0, 0);
+}
+
+.form-group{
+	text-align: center;
+}

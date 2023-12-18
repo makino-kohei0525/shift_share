@@ -1,0 +1,82 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding: 0;
+}
+
+body{
+	background-color: rgb(249, 249, 249);
+}
+
+.primary{
+	margin-top:40%;
+	color:  rgb(0, 0, 64);
+	font-size: 2.5rem;
+}
+
+.secondary {
+	
+	margin-top: 20%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+header{
+	display: flex;
+	height: 60px;
+	background-color: rgb(0, 0, 64);
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+span.material-icons {
+    color: white;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    line-height: 60px;
+}
+
+.name {
+    margin-left: 0.5rem;
+    color: white;
+    line-height: 60px;
+}
+
+/*テーブル関連*/
+
+table{
+	margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+}
+table, td, th, tr{
+	border: 1px solid black;
+}
+
+td{
+	background-color: #ffffff;
+}
+
+.date{
+	width: 40%;
+	background-color: cornflowerblue;
+}
+
+.time {
+    background-color: cornflowerblue;
+}
+
+/*ボタン関連*/
+.btn{
+	margin: 10% auto;
+	border-radius : 5%;          
+	font-size     : 1.0rem ;      
+	padding       : 10px 18px;   
+	background    : rgb(185, 0, 0);     
+	color         : #ffffff;     
+	line-height   : 1em;         
+	border        : 1px solid rgb(185, 0, 0);
+}

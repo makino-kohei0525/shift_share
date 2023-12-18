@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>シフト一覧表</title>
+  <!-- ここにCSSファイルのリンクやスタイルの設定を追加 -->
+  <style>
+    /* 表のスタイルを追加 */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<h2>シフト一覧表</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>エリア</th>
+      <th>クライアント</th>
+      <th>店舗</th>
+      <th>キャリア</th>
+      <th>担当者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ここにデータを表示するためのループ処理を追加 -->
+    <!-- 以下は仮のデータの例 -->
+    <tr>
+      <td>1</td>
+      <td>エリアA</td>
+      <td>クライアントX</td>
+      <td>店舗1</td>
+      <td>アルバイト</td>
+      <td>田中太郎</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>エリアB</td>
+      <td>クライアントY</td>
+      <td>店舗2</td>
+      <td>正社員</td>
+      <td>山田花子</td>
+    </tr>
+    <!-- データベースから取得したデータをここに表示 -->
+    <!-- 上記例のように仮のデータではなく、実際のデータを表示するようにプログラムを追加 -->
+  </tbody>
+</table>
+
+</body>
+</html>

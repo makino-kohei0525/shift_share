@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link th:href = "@{/css/shift.css}" rel = "stylesheet" type="text/css">
+<title>シフト入力</title>
+</head>
+<body>
+	<section layout:fragment = "content">
+	<h1 class="secondary">シフト入力</h1>
+	<form th:action = "@{/update}" method="post" th:object = "${shiftForm}">
+		<table>
+			<thead>
+				<tr>
+					<th class="date">日付</th>
+					<th class="time">時間</th>
+			</thead>
+			<tbody>
+				<tr th:each = "item : ${shift}">
+					<td>[[${item.key}]](<span th:text = "${#temporals.dayOfWeekNameShort(item.key)}"></span>)<input type="hidden" name = "date" th:value="${item.key}"></td>
+					<td>
+						<select name = "time">
+							<option th:each = "element : ${item.value}" th:inline = "text" th:value="${element}" th:text="${element}" 
+							 th:selected = "${inputShift != null and element == inputShift.get('__${item.key}__')}"></option>
+						</select>
+					</td>
+				</tr>
+			</tbpdy>
+		</table>
+		<div class="form_btn">
+			<input type="submit" name = "action" value = "戻る" class="btn">
+			<input type="submit" name = "action" value = "確認" class="btn next">
+		</div>
+		<input type="hidden" name="month" th:value = "${month}">
+	</form>
+	</section>
+</body>
+</html>

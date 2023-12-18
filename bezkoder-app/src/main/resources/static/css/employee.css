@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+table, tr, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: max-content;
+}
+
+.changeWindow{
+	display: none;
+	background-color: #EEE;
+	z-index: 800;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+.view{
+	width: 100%;
+	border: 0;
+	border-radius: 10px;
+	background-color: #EEE;
+}
+
+.yellow{
+	color: yellow;
+}
+
+.red{
+	color: red;
+}
+
+.blue{
+	color: aqua;
+}
