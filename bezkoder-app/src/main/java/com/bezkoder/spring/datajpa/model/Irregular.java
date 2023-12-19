@@ -12,8 +12,15 @@ public class Irregular {
 	private String id;
 
 	private LocalDate date;
+	
+	private String irrVal;
 
 	private String color;
 
 	private String comment;
+	
+	final String CONST_YUUKYUU = "paid";
+	
+	final String CONST_KEKKIN = "absence";
+	
 }

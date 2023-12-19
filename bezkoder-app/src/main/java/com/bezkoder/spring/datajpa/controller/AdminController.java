@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bezkoder.spring.datajpa.form.EmployeeForm;
 import com.bezkoder.spring.datajpa.form.InfoForm;
+import com.bezkoder.spring.datajpa.form.IrregularForm;
 import com.bezkoder.spring.datajpa.service.AdminService;
 import com.bezkoder.spring.datajpa.service.InfoService;
 import com.bezkoder.spring.datajpa.service.UsersService;
@@ -55,6 +57,7 @@ public class AdminController {
 		
 		model.addAttribute("employee", adminService.employee(month));
 		model.addAttribute("label", adminService.label(month));
+		model.addAttribute("irregularForm", new IrregularForm());
 		
 		return "employee";
 	}
@@ -65,6 +68,19 @@ public class AdminController {
 		model.addAttribute("label", adminService.labelList());
 		
 		return "employee";
+	}
+	
+	/**
+	 * イレギュラー情報フォームの受取
+	 * @return bool保存の成否
+	 */
+	@PostMapping("/saveirr")
+	@ResponseBody
+	public IrregularForm save(IrregularForm irregularForm) {
+		adminService.irrRegister(irregularForm);
+		System.out.println(irregularForm.getDate());
+		
+		return irregularForm;
 	}
 
 	/**

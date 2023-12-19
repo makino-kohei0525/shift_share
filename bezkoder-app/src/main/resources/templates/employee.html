@@ -1,78 +1,122 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
-    />
-    <link th:href="@{/css/employee.css}" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>従業員、シフト情報</title>
-  </head>
-  <body>
-    <h1>情報表示画面</h1>
-    <div id="locatedpoint" class="changeWindow">
-      <form>
-        <input class="view" type="text" readonly="true" id="idInWin" />
-        <input class="view" type="text" readonly="true" id="dateInWin" />
-        <input class="radio" type="radio" name="color" value="yellow" /><label
-          class="yellow"
-          >●</label
-        >
-        <input class="radio" type="radio" name="color" value="red" /><label
-          class="red"
-          >●</label
-        >
-        <input class="radio" type="radio" name="color" value="blue" /><label
-          class="blue"
-          >●</label
-        >
-      </form>
-      <button class="close">×</button>
-    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th th:each="item : ${label}" th:object="${item}">
-            <span th:text="${item}"></span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          th:each="element : ${employee}"
-          th:object="${element}"
-          th:data-userid="*{id}"
-        >
-          <th:block th:each="item : ${element}">
-            <td
-              class="cell"
-              th:text="${item.value}"
-              th:data-date="${item.key}"
-            ></td>
-          </th:block>
-        </tr>
-      </tbody>
-    </table>
+<head>
+	<meta charset="UTF-8" />
+	<meta th:name="_csrf" th:content="${_csrf.token}">
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}">
+	<link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link th:href="@{/css/employee.css}" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>従業員、シフト情報</title>
+</head>
 
-    <form th:action="@{/admin}">
-      <input type="submit" value="戻る" />
-    </form>
-    <script>
-      $(".cell").on("click", function (el) {
-        var id = $(this).parent().data("userid");
-        var name = $(this).parent().children().eq(1).text();
-        var x = el.pageX;
-        var y = el.pageY;
-        $("#locatedpoint").css({ top: y, left: x, display: "block" });
-        $("#idInWin").val(name);
-        $("#dateInWin").val($(this).data("date"));
-      });
-      $(".close").on("click", function (el) {
-        $("#locatedpoint").css({ display: "none" });
-      });
-    </script>
-  </body>
+<body>
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="w-100 toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-body">
+				保存できました。
+			</div>
+		</div>
+	</div>
+
+	<h1>情報表示画面</h1>
+	<div id="locatedpoint" class="changeWindow">
+		<form id="irrRegister" th:action="@{/saveirr}">
+			<input class="view" type="text" readonly="true" id="idInWin" name="id" />
+			<input class="view" type="text" readonly="true" id="dateInWin" name="date" />
+			<div class="color">
+				<input class="radio" type="radio" name="color" value="yellow" /><label class="yellow">■</label>
+				<input class="radio" type="radio" name="color" value="red" /><label class="red">■</label>
+				<input class="radio" type="radio" name="color" value="blue" /><label class="blue">■</label>
+			</div>
+			<div>
+				<input class="irrVal" type="radio" name="irrVal" value="default"><label id="time">none</label>
+				<input class="irrVal" type="radio" name="irrVal" value="absense"><label id="time">欠勤</label>
+				<input class="irrVal" type="radio" name="irrVal" value="paid"><label id="time">有給</label>
+			</div>
+			<textarea class="null" type="a" name="comment" id="comment"></textarea>
+			<button type="submit" class="btn btn-primary" id="liveToastBtn">保存</button>
+
+		</form>
+		<button class="close">×</button>
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th th:each="item : ${label}" th:object="${item}">
+					<span th:text="${item}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="element : ${employee}" th:object="${element}" th:data-userid="*{id}">
+				<th:block th:each="item : ${element}">
+					<td class="cell" th:text="${item.value}" th:data-date="${item.key}"></td>
+				</th:block>
+			</tr>
+		</tbody>
+	</table>
+
+	<form th:action="@{/admin}">
+		<input type="submit" value="戻る" />
+	</form>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+
+	<script>
+		$(".cell").on("click", function (el) {
+			var id = $(this).parent().data("userid");
+			var name = $(this).parent().children().eq(1).text();
+			var x = el.pageX;
+			var y = el.pageY;
+			$("#locatedpoint").css({top: y, left: x, display: "block"});
+			$("#idInWin").val(name);
+			$("#dateInWin").val($(this).data("date"));
+		});
+		
+		$(".close").on("click", function (el) {
+			$("#locatedpoint").css({display: "none"});
+		});
+
+		const toastTrigger = document.getElementById('liveToastBtn')
+		const toastLiveExample = document.getElementById('liveToast')
+
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		$(document).ajaxSend(function (e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+
+		if (toastTrigger) {
+			const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+			const form = document.getElementById("irrRegister");
+			form.addEventListener('submit', async (e) => {
+				e.stopPropagation();
+				e.preventDefault();
+				$.ajax({
+					url: "/saveirr",
+					type: "POST",
+					dataType: "json",
+					data: $("#irrRegister").serialize(),
+					async: true,
+				}).done(function (data) {
+					
+					toastBootstrap.show()
+				}).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log('XMLHttpRequwst:' + XMLHttpRequest);
+					console.log('textStatus:' + textStatus);
+					console.log('errorThrown:' + errorThrown);
+				});
+
+			})
+		}
+
+	</script>
+</body>
+
 </html>

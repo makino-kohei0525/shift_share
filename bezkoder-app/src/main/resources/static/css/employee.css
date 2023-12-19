@@ -12,10 +12,16 @@ table, tr, th, td{
 	background-color: #EEE;
 	z-index: 800;
 	position: absolute;
-	width: 100px;
-	height: 100px;
+	width: 200px;
+/*	height: 150px;*/
 	border: 2px solid black;
 	border-radius: 10px;
+}
+
+#comment{
+	width: 180px;
+	font-size: 0.8rem;
+	line-height: 1.5rem;
 }
 
 .view{
@@ -35,4 +41,16 @@ table, tr, th, td{
 
 .blue{
 	color: aqua;
+}
+
+.close{
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	border: none;
+	
+}
+
+.color label{
+	font-size: 1.5rem;
 }

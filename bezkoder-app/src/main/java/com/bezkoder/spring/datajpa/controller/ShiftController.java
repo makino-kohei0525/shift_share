@@ -117,7 +117,7 @@ public class ShiftController {
 			shiftService.shiftRegister(shiftForm);
 			model.addAttribute("name", usersService.user());
 			
-			return "top";
+			return "home";
 		}else {
 			return null;
 		}
